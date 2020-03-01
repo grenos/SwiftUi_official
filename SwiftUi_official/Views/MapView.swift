@@ -18,6 +18,8 @@ The UIViewRepresentable protocol has two requirements you need to add: a makeUIV
  
 struct MapView: UIViewRepresentable {
     
+    var coordinate: CLLocationCoordinate2D
+    
     // Use makeUIView(context:) method that creates and returns an empty MKMapView.
     func makeUIView(context: Context) -> MKMapView {
         MKMapView(frame: .zero)
@@ -26,10 +28,6 @@ struct MapView: UIViewRepresentable {
     
     // Create an updateUIView(_:context:) method that sets the map view’s region to the correct coordinates to center the map on Turtle Rock.
     func updateUIView(_ view: MKMapView, context: Context) {
-        
-        let coordinate = CLLocationCoordinate2D(
-            latitude: 34.011286, longitude: -116.166868
-        )
         
         let span = MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)
         let region = MKCoordinateRegion(center: coordinate, span: span)
@@ -47,6 +45,6 @@ struct MapView: UIViewRepresentable {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(coordinate: landmarkData[0].locationCoordinate)
     }
 }
