@@ -36,7 +36,8 @@ struct Landmark: Hashable, Codable {
 
 extension Landmark {
     var image: Image {
-        Imagestore.shared.image(name: imageName)
+        ImageStore.shared.image(name: imageName)
+        
     }
 }
 
